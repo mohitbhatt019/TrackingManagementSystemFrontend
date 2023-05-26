@@ -21,15 +21,14 @@ const Login = () => {
   const loginChangeHandler = (e) => {
     setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
   };
-  console.log(loginError,"loginError")
+  //console.log(loginError,"loginError")
   
-   
   const loginClick = () => {
-    debugger
     
     // Dispatch the loginUser action
     dispatch(loginUser(loginForm));
-  
+    if (loginError !== null) {
+      setShowAlert(true);}
     // Delayed execution using setTimeout
     setTimeout(() => {
       
@@ -44,7 +43,7 @@ const Login = () => {
       return () => {
         clearTimeout(timeoutId);
       };
-    }, 1000); // Delay of 2 seconds
+    }, ); // Delay of 2 seconds
   };
 
 
@@ -52,10 +51,6 @@ const Login = () => {
     debugger
     if (tokenn !== "" || loginError === "") {
       navigate("/companyList");
-    }
-
-    if (loginError !== null) {
-      setShowAlert(true);
     }
   },[tokenn])
   
